@@ -20,20 +20,20 @@ Codex 與 Antigravity 共用根目錄 AGENTS.md。開始開發時可下達：
 | 正式應用程式名稱 | 雙按鈕計數器（TwoButtonPractice） |
 | 產品用途 | 練習增加與重設計數，以及 AI 開發與驗證流程 |
 | GitHub 儲存庫 URL | 待填 |
-| Git 遠端名稱 | origin（預定） |
+| Git 遠端名稱 | origin |
 | 預設開發分支 | 待確認 |
-| Solution 路徑 | 待建立 |
-| 桌面應用專案路徑 | 待建立 |
-| 測試專案路徑與執行器 | 待建立／待選定 |
+| Solution 路徑 | TwoButtonPractice.sln |
+| 桌面應用專案路徑 | src/TwoButtonPractice/TwoButtonPractice.csproj |
+| 測試專案路徑與執行器 | tests/TwoButtonPractice.Tests；xUnit／VSTest |
 
-目前沒有 Git 儲存庫，故本次文件建立尚未 commit 或 push。確認 GitHub 網址、分支並完成登入後，才可設定實際推送目的地。不要將 Token 寫入文件或遠端 URL。
+2026-10-21 實作狀態：雙按鈕計數器已以 .NET 9 實作，Release 建置及 11 個測試通過，部分 UI 縮放驗收待完成，詳見 docs/TASKS.md。本次已核對 Git 遠端為 https://github.com/huhua-info/TwoButtonPractice.git，使用者指定推送 origin/main。不要將 Token 寫入文件或遠端 URL。
 
 ## 開發環境
 
 - Windows 與 PowerShell。
-- .NET 10 SDK（不是只有 Runtime）。
+- .NET 9 SDK 9.0.317（global.json 固定版本；依本次使用者授權採用）。
 - Git for Windows；GitHub 認證與推送權限。
-- Avalonia 套件版本於初始化專案時確認並固定。
+- Avalonia 11.3.12、CommunityToolkit.Mvvm 8.4.0，版本固定於 csproj。
 
 可先檢查：
 
@@ -46,6 +46,15 @@ git --version
 
 ## 建置、測試與啟動
 
-尚無 .sln／.slnx／.csproj，因此目前沒有可執行的應用程式建置或測試指令。初始化完成後，請在此填入實際的套件還原、Release 建置、測試與啟動命令；測試命令須與所選執行器相容。
+在儲存庫根目錄執行：
+
+```powershell
+dotnet restore TwoButtonPractice.sln
+dotnet build TwoButtonPractice.sln -c Release --no-restore
+dotnet test TwoButtonPractice.sln -c Release --no-build
+dotnet run --project src/TwoButtonPractice/TwoButtonPractice.csproj -c Release --no-build
+```
+
+按「增加次數」累加至 999；「重設」歸零並恢復增加。Tab 移動焦點、Space 操作，關閉後不保存計數。
 
 `.gitignore` 排除常見建置輸出與本機秘密；既有 CAD 模型、圖片及腳本仍保留。若之後兩個 AI 同時開發，使用各自的工作目錄／worktree 與分支，避免互相覆蓋。

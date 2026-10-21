@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TwoButtonPractice.ViewModels"
+        x:Class="TwoButtonPractice.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="雙按鈕計數器" Width="480" Height="320" MinWidth="360" MinHeight="240"
+        FontFamily="Microsoft JhengHei" FontSize="16">
+  <StackPanel Margin="20" Spacing="18" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <TextBlock Text="按鈕操作練習" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" />
+    <TextBlock Text="{Binding Count, StringFormat='目前次數：{0}'}" FontSize="22" HorizontalAlignment="Center" />
+    <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Center">
+      <Button x:Name="IncrementButton" Content="增加次數" Command="{Binding IncrementCommand}" TabIndex="0" MinWidth="112" HorizontalContentAlignment="Center" />
+      <Button x:Name="ResetButton" Content="重設" Command="{Binding ResetCommand}" TabIndex="1" MinWidth="88" HorizontalContentAlignment="Center" />
+    </StackPanel>
+    <TextBlock Text="{Binding StatusMessage}" HorizontalAlignment="Center" />
+  </StackPanel>
+</Window>
