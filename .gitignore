@@ -1,0 +1,16 @@
+# .NET build outputs and local IDE settings
+**/bin/
+**/obj/
+.vs/
+**/TestResults/
+*.user
+*.suo
+
+# Local secrets; keep example configurations
+.env
+.env.*
+!.env.example
+
+# Python caches
+__pycache__/
+*.py[cod]
